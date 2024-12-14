@@ -37,7 +37,7 @@ function shuffleCards() {
 function displayCard() {
     const card = cards[currentCardIndex];
     front.textContent = card.english;
-    back.textContent = `${card.kannada} (${card.pronunciation})`;
+    back.textContent = `${card.kannada}\n(${card.pronunciation})`;
     flashcard.classList.remove('flipped');
 }
 
@@ -78,8 +78,8 @@ document.addEventListener('keydown', (event) => {
 function resizeFlashcard(factor) {
     scaleFactor *= factor;
     flashcard.style.transform = `scale(${scaleFactor})`;
-    front.style.fontSize = `${40 * scaleFactor}px`; // Adjust text size proportionally
-    back.style.fontSize = `${40 * scaleFactor}px`;
+    front.style.fontSize = `${50 * scaleFactor}px`; // Adjust text size proportionally
+    back.style.fontSize = `${50 * scaleFactor}px`;
 }
 
 increaseSizeButton.addEventListener('click', () => {
