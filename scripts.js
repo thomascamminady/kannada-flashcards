@@ -12,7 +12,9 @@ let currentCardIndex = 0;
 let scaleFactor = 1; // Initial scaling factor
 
 // Load CSV file data
-fetch('kannada_1000_common_words.csv')
+const file = 'kannada_100_common_words.csv';
+// const file = 'kannada_1000_common_words.csv';
+fetch(file)
     .then(response => response.text())
     .then(csv => {
         const lines = csv.split('\n');
@@ -62,15 +64,22 @@ document.addEventListener('keydown', (event) => {
     } else if (event.code === 'ArrowRight') {
         currentCardIndex = (currentCardIndex + 1) % cards.length;
         displayCard();
+    } // on plus, increase
+    else if (event.code === 'BracketRight') {
+        resizeFlashcard(1.1); // Increase size by 10%
+    } // on minus, decrease
+    else if (event.code === 'Slash') {
+        resizeFlashcard(0.9); // Decrease size by 10%
     }
+    console.log(event.code);
 });
 
 // Adjust flashcard size proportionally
 function resizeFlashcard(factor) {
     scaleFactor *= factor;
     flashcard.style.transform = `scale(${scaleFactor})`;
-    front.style.fontSize = `${24 * scaleFactor}px`; // Adjust text size proportionally
-    back.style.fontSize = `${24 * scaleFactor}px`;
+    front.style.fontSize = `${40 * scaleFactor}px`; // Adjust text size proportionally
+    back.style.fontSize = `${40 * scaleFactor}px`;
 }
 
 increaseSizeButton.addEventListener('click', () => {
